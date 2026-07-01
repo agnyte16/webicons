@@ -1,0 +1,5 @@
+# robots.txt — webicons.org
+User-agent: *
+Allow: /
+
+Sitemap: https://www.webicons.org/sitemap.xml
