@@ -546,6 +546,27 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   }
+
+  /* ── Craft layer: hero įėjimas, scroll-reveals, nav underline, footer wordmark ──
+     Viskas transform/opacity (compositor), be bibliotekų. reduced-motion: hero anim.
+     užgesina globalus kill-switch aukščiau; reveals iš viso nepridedami (JS gate). */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    .hero-content > .hero-meta { animation: rise-in .6s cubic-bezier(0.16, 1, 0.3, 1) .05s backwards; }
+    .hero-content > h1         { animation: rise-in .75s cubic-bezier(0.16, 1, 0.3, 1) .16s backwards; }
+    .hero-content > .lead      { animation: rise-in .6s cubic-bezier(0.16, 1, 0.3, 1) .30s backwards; }
+    .hero-content > .cta       { animation: rise-in .6s cubic-bezier(0.16, 1, 0.3, 1) .42s backwards; }
+  }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1) var(--rd, 0s), transform .6s cubic-bezier(0.16, 1, 0.3, 1) var(--rd, 0s); }
+  .reveal.in { opacity: 1; transform: none; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transition: transform .24s ease; }
+  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+  .footer-wordmark {
+    font-weight: 800; font-size: clamp(44px, 10.5vw, 168px); line-height: 1; letter-spacing: -0.03em;
+    text-align: center; color: var(--emboss); user-select: none; margin: 10px 0 28px; white-space: nowrap;
+    text-shadow: -2px -2px 3px var(--hl), 4px 4px 8px rgba(31, 33, 38, 0.18);
+  }
 </style>
 </head>
 <body>
@@ -828,6 +849,7 @@
         <a href="#contact">Contact</a>
       </div>
     </div>
+    <div class="footer-wordmark" aria-hidden="true">WEBICONS</div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> WEBICONS</span>
       <span>info@webicons.org</span>
@@ -1302,6 +1324,24 @@
       }
     });
   }
+})();
+</script>
+<script>
+/* Scroll-reveals: JS pats prideda .reveal klases (be JS niekas nepaslėpta — progressive
+   enhancement). reduced-motion / seno IO atveju — išjungta, viskas matoma iškart. */
+(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const els = [];
+  const add = (sel, step) => document.querySelectorAll(sel).forEach((el, i) => {
+    el.classList.add('reveal');
+    if (step) el.style.setProperty('--rd', Math.min(i, 6) * step + 'ms');
+    els.push(el);
+  });
+  add('.sec-head'); add('.price-card', 70); add('.t-card', 70); add('.form-wrap'); add('.footer-wordmark');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  els.forEach((el) => io.observe(el));
 })();
 </script>
 </body>
