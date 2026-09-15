@@ -194,7 +194,6 @@
   }
   .nav-link { color: var(--ink-2); text-decoration: none; transition: color .22s ease; }
   .nav-link:hover { color: var(--accent); }
-  .nav-vacancy { color: var(--ink-dim); }
   .nav-cta {
     display: inline-flex; align-items: center; gap: 8px;
     color: var(--ink); text-decoration: none; padding: 9px 16px;
@@ -416,11 +415,6 @@
 
   /* ── KONTAKTAI ────────────────────────────────────────────────────────────── */
   .contact-wrap { max-width: 760px; }
-  .availability { display: inline-flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 22px; }
-  .availability .bar { display: inline-flex; gap: 4px; }
-  .availability .cell { width: 11px; height: 6px; border-radius: 3px; background: var(--bg-3); box-shadow: inset 1px 1px 2px var(--sh); }
-  .availability .cell.filled { background: var(--accent-ink); box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 70%, transparent); }
-  .availability .free { color: var(--accent-ink); font-weight: 500; }
   .cta-trust { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 30px; }
   .cta-trust-item { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); background: var(--bg); padding: 9px 16px; border-radius: 100px; box-shadow: 3px 3px 7px var(--sh), -3px -3px 7px var(--hl); }
   .cta-trust-item .mark {
@@ -533,9 +527,9 @@
   .footer-col a:hover { color: var(--accent-ink); }
   .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-dim); padding-top: 24px; border-top: 1px solid var(--line); }
 
-  /* neon žalia pilė + tekstas TIK markerių numeriams + „vietų laisvos" badge (ne antraštėms).
+  /* neon žalia pilė + tekstas markerių numeriams (ne antraštėms).
      Antraštės — vienos tamsios spalvos (em = inherit). */
-  .marker .num, .availability .free {
+  .marker .num {
     font-style: normal; background: var(--accent); color: var(--ink);
     padding: 0.05em 0.34em; border-radius: 0.34em;
     -webkit-box-decoration-break: clone; box-decoration-break: clone;
@@ -546,7 +540,7 @@
   .field .req {
     text-shadow: 0 0 9px color-mix(in srgb, var(--accent) 80%, transparent), 0 1px 1px rgba(40, 42, 48, 0.25);
   }
-  .marker .num, .availability .free {
+  .marker .num {
     box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 45%, transparent);
   }
 
@@ -577,9 +571,6 @@
     .work-copy { padding: 17px; }
     .work-copy h3 { font-size: 20px; }
     .price-grid { grid-template-columns: 1fr; }   /* -> 1 stulpelis */
-    /* MOBILE: availability vertikaliai, kairėje, kiekvienas elementas 1 eilutėje */
-    .availability { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .availability > span { white-space: nowrap; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
@@ -624,8 +615,7 @@
       <a href="#work" class="nav-link hide-mobile">Work</a>
       <a href="#pricing" class="nav-link hide-mobile">Services</a>
       <a href="#reviews" class="nav-link hide-mobile">Reviews</a>
-      <span class="nav-vacancy hide-mobile">7/10 spots · Q2 2026</span>
-      <a href="#contact" class="nav-cta" aria-label="Get in touch — 7 of 10 spots taken">
+      <a href="#contact" class="nav-cta" aria-label="Get in touch">
         Get in touch
       </a>
     </div>
@@ -638,7 +628,7 @@
   <div class="hero-veil" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <p class="hero-meta"><span class="blip" aria-hidden="true"></span>Taking projects · Q2 2026</p>
+    <p class="hero-meta"><span class="blip" aria-hidden="true"></span>Taking new projects</p>
     <h1>Websites that sell.</h1>
     <p class="lead"><strong>Your idea's too good</strong> to live only in your head.</p>
     <a class="cta" href="#contact">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
@@ -849,14 +839,6 @@
     </div>
 
     <div class="contact-wrap">
-      <div class="availability">
-        <span>Q2 · 2026</span>
-        <span class="bar" role="img" aria-label="7 of 10 spots taken">
-          <span class="cell filled"></span><span class="cell filled"></span><span class="cell filled"></span><span class="cell filled"></span><span class="cell filled"></span><span class="cell filled"></span><span class="cell filled"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
-        </span>
-        <span class="free">7 of 10 spots taken</span>
-      </div>
-
       <div class="cta-trust">
         <div class="cta-trust-item"><span class="mark" aria-hidden="true"></span><span><strong>Fixed</strong> price</span></div>
         <div class="cta-trust-item"><span class="mark" aria-hidden="true"></span><span><strong>Written</strong> proposal</span></div>
