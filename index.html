@@ -1376,6 +1376,12 @@
   const yearEl = document.querySelector('[data-year]');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Mobile menu closes after picking a link.
+  const mobileMenu = document.querySelector('.mobile-menu');
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => mobileMenu.removeAttribute('open'));
+  });
+
   // ── Contact form (Web3Forms AJAX → info@webicons.org) ──
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
