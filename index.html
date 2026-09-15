@@ -341,7 +341,36 @@
   .sec-head h2 em { font-style: normal; color: inherit; }
   .sec-head .intro { margin-top: 16px; color: var(--ink-2); font-size: 17px; max-width: 520px; }
 
-  /* ── KAINOS (price cards) ─────────────────────────────────────────────────── */
+  /* ── WORK ─────────────────────────────────────────────────────────────────── */
+  .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .work-card {
+    display: block; color: inherit; text-decoration: none; border: 1px solid var(--line);
+    border-radius: 16px; overflow: hidden; background: var(--bg-2);
+    box-shadow: 0 14px 32px rgba(31, 33, 38, 0.09);
+    transition: transform .24s var(--ease-out-strong), box-shadow .24s var(--ease-out-strong), border-color .24s var(--ease-out-strong);
+  }
+  .work-card:focus-visible { transform: translateY(-4px); border-color: var(--line-strong); box-shadow: 0 18px 38px rgba(31, 33, 38, 0.14); }
+  .work-media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-3); border-bottom: 1px solid var(--line); }
+  .work-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+  .work-copy { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 18px; padding: 20px; }
+  .work-type { display: block; margin-bottom: 5px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim); }
+  .work-copy h3 { font-size: 22px; line-height: 1.15; }
+  .work-link { font-size: 14px; font-weight: 600; white-space: nowrap; }
+  @media (hover: hover) and (pointer: fine) {
+    .work-card:hover { transform: translateY(-4px); border-color: var(--line-strong); box-shadow: 0 18px 38px rgba(31, 33, 38, 0.14); }
+    .work-card:hover .work-media img { transform: scale(1.025); }
+    .work-card:hover .work-link { color: #2b6600; }
+  }
+  .work-more { margin-top: 32px; }
+  .work-more > summary { width: fit-content; min-height: 48px; display: flex; align-items: center; gap: 14px; cursor: pointer; font-weight: 600; list-style: none; padding: 10px 0; border-bottom: 1px solid var(--ink-dim); }
+  .work-more > summary::-webkit-details-marker { display: none; }
+  .work-more > summary::after { content: '+'; font-size: 24px; line-height: 1; }
+  .work-more[open] > summary::after { content: '−'; }
+  .work-more .work-grid { margin-top: 28px; }
+  .work-offline { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+  article.work-card:hover { transform: none; box-shadow: 0 14px 32px rgba(31, 33, 38, 0.09); }
+
+  /* ── PRICING (price cards) ───────────────────────────────────────────────── */
   .price-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }   /* 5 paslaugos vienoje eilėje — minmax(0,1fr) = priverstinai LYGŪS stulpeliai (nowrap tekstas nebeišplečia kortelės) */
   .price-card {
     display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit;
@@ -541,9 +570,12 @@
     #hero-canvas { position: relative; width: 100%; height: 56vw; max-height: 360px; left: auto; top: auto; transform: none; margin: 0 auto 34px; }   /* be top margin; 34px apačioj -> simetrija su tarpu virš gaublio */
     .hero-veil { display: none; }
     .hero-content { max-width: 100%; }
+    .work-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .form-grid.two-col { grid-template-columns: 1fr; }
+    .work-copy { padding: 17px; }
+    .work-copy h3 { font-size: 20px; }
     .price-grid { grid-template-columns: 1fr; }   /* -> 1 stulpelis */
     /* MOBILE: availability vertikaliai, kairėje, kiekvienas elementas 1 eilutėje */
     .availability { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -589,6 +621,7 @@
       WEBICONS
     </a>
     <div class="nav-right">
+      <a href="#work" class="nav-link hide-mobile">Work</a>
       <a href="#pricing" class="nav-link hide-mobile">Services</a>
       <a href="#reviews" class="nav-link hide-mobile">Reviews</a>
       <span class="nav-vacancy hide-mobile">7/10 spots · Q2 2026</span>
@@ -616,24 +649,96 @@
 <nav class="sr-only" aria-label="Projects">
   <h2>Projects</h2>
   <ul>
-    <li><a href="https://artmaverktakar.is" target="_blank" rel="noopener">Artma Verktakar — Construction, Iceland</a></li>
     <li><a href="https://sunbroke.com" target="_blank" rel="noopener">Sunbroke — Women's style</a></li>
-    <li><a href="https://corgicards.lt" target="_blank" rel="noopener">Corgi Cards — Pokémon TCG</a></li>
     <li><a href="https://closterra.com" target="_blank" rel="noopener">Closterra — Handcraft</a></li>
     <li><a href="https://tarita.lt" target="_blank" rel="noopener">Tarita — Landing page</a></li>
     <li><a href="https://laimeslaikas.lt" target="_blank" rel="noopener">Laimes Laikas — Bookstore</a></li>
-    <li><a href="https://prellen.com" target="_blank" rel="noopener">Prellen — Women's fashion</a></li>
     <li><a href="https://lingerieshop.lt" target="_blank" rel="noopener">Lingerie Shop — Lingerie</a></li>
     <li><a href="https://montana33.lt" target="_blank" rel="noopener">Montana Auto Parts — Auto parts</a></li>
+    <li><a href="https://harmoscosmetics.com" target="_blank" rel="noopener">Harmos Cosmetics — Spa cosmetics</a></li>
+    <li><a href="https://www.eurika.pl/" target="_blank" rel="noopener">Eurika — Art reproductions, Poland</a></li>
+    <li><a href="https://www.eurikagalerija.lv/" target="_blank" rel="noopener">Eurika — Art reproductions, Latvia</a></li>
+    <li><a href="https://www.eurikakunst.ee/" target="_blank" rel="noopener">Eurika — Art reproductions, Estonia</a></li>
+    <li><a href="https://wishandbuy.com/" target="_blank" rel="noopener">Wish &amp; Buy — Shopify store</a></li>
   </ul>
 </nav>
 
 <main>
 
-<!-- 01 · PRICING -->
+<!-- 01 · WORK -->
+<section id="work">
+  <div class="container">
+    <div class="marker"><span class="num">01</span><span>Work</span><span class="flex"></span><span>Real projects</span></div>
+    <div class="sec-head">
+      <h2>No promises. <em>Live projects.</em></h2>
+      <p class="intro">E-commerce stores and business sites for Lithuania and international markets.</p>
+    </div>
+    <div class="work-grid">
+      <a class="work-card" href="https://www.eurika.pl/" target="_blank" rel="noopener">
+        <div class="work-media"><img src="screenshots/eurika-pl.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Eurika art reproductions store for the Polish market" /></div>
+        <div class="work-copy"><div><span class="work-type">Art e-commerce · Poland</span><h3>Eurika</h3></div><span class="work-link">Open ↗</span></div>
+      </a>
+      <a class="work-card" href="https://harmoscosmetics.com/" target="_blank" rel="noopener">
+        <div class="work-media"><img src="screenshots/harmos.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Harmos Cosmetics store" /></div>
+        <div class="work-copy"><div><span class="work-type">Cosmetics · E-commerce</span><h3>Harmos Cosmetics</h3></div><span class="work-link">Open ↗</span></div>
+      </a>
+      <a class="work-card" href="https://montana33.lt/" target="_blank" rel="noopener">
+        <div class="work-media"><img src="screenshots/montana.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Montana Auto Parts store" /></div>
+        <div class="work-copy"><div><span class="work-type">Auto parts · E-commerce</span><h3>Montana Auto Parts</h3></div><span class="work-link">Open ↗</span></div>
+      </a>
+      <a class="work-card" href="https://wishandbuy.com/" target="_blank" rel="noopener">
+        <div class="work-media"><img src="screenshots/wishandbuy.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Wish and Buy Shopify store for books, cosmetics and supplements" /></div>
+        <div class="work-copy"><div><span class="work-type">Shopify · Lithuania</span><h3>Wish &amp; Buy</h3></div><span class="work-link">Open ↗</span></div>
+      </a>
+      <a class="work-card" href="https://closterra.com" target="_blank" rel="noopener">
+        <div class="work-media"><img src="screenshots/closterra.webp" width="1400" height="574" loading="lazy" decoding="async" alt="Closterra handcraft store" /></div>
+        <div class="work-copy"><div><span class="work-type">E-commerce · Handcraft</span><h3>Closterra</h3></div><span class="work-link">Open ↗</span></div>
+      </a>
+      <a class="work-card" href="https://tarita.lt" target="_blank" rel="noopener">
+        <div class="work-media"><img src="screenshots/tarita.webp" width="1400" height="591" loading="lazy" decoding="async" alt="Tarita landing page" /></div>
+        <div class="work-copy"><div><span class="work-type">Landing page</span><h3>Tarita</h3></div><span class="work-link">Open ↗</span></div>
+      </a>
+    </div>
+    <details class="work-more">
+      <summary>More work (7)</summary>
+      <div class="work-grid">
+        <a class="work-card" href="https://www.eurikagalerija.lv/" target="_blank" rel="noopener">
+          <div class="work-media"><img src="screenshots/eurika-lv.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Eurika art reproductions store for the Latvian market" /></div>
+          <div class="work-copy"><div><span class="work-type">Art e-commerce · Latvia</span><h3>Eurika Latvia</h3></div><span class="work-link">Open ↗</span></div>
+        </a>
+        <a class="work-card" href="https://www.eurikakunst.ee/" target="_blank" rel="noopener">
+          <div class="work-media"><img src="screenshots/eurika-ee.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Eurika art reproductions store for the Estonian market" /></div>
+          <div class="work-copy"><div><span class="work-type">Art e-commerce · Estonia</span><h3>Eurika Estonia</h3></div><span class="work-link">Open ↗</span></div>
+        </a>
+        <a class="work-card" href="https://sunbroke.com/" target="_blank" rel="noopener">
+          <div class="work-media"><img src="screenshots/sunbroke.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Sunbroke women's fashion store" /></div>
+          <div class="work-copy"><div><span class="work-type">Fashion · E-commerce</span><h3>Sunbroke</h3></div><span class="work-link">Open ↗</span></div>
+        </a>
+        <a class="work-card" href="https://laimeslaikas.lt/" target="_blank" rel="noopener">
+          <div class="work-media"><img src="screenshots/laimeslaikas.webp" width="1400" height="900" loading="lazy" decoding="async" alt="Laimes Laikas online bookstore" /></div>
+          <div class="work-copy"><div><span class="work-type">Bookstore · Lithuania</span><h3>Laimes Laikas</h3></div><span class="work-link">Open ↗</span></div>
+        </a>
+        <a class="work-card" href="https://lingerieshop.lt/" target="_blank" rel="noopener">
+          <div class="work-media"><img src="screenshots/lingerieshop.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Lingerie Shop store" /></div>
+          <div class="work-copy"><div><span class="work-type">Lingerie · Lithuania</span><h3>Lingerie Shop</h3></div><span class="work-link">Open ↗</span></div>
+        </a>
+        <article class="work-card">
+          <div class="work-media"><img src="screenshots/artma.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Screenshot of the Artma Verktakar site we built" /></div>
+          <div class="work-copy"><div><span class="work-type">Construction · Iceland</span><h3>Artma Verktakar</h3><p class="work-offline">Site link temporarily unavailable.</p></div></div>
+        </article>
+        <article class="work-card">
+          <div class="work-media"><img src="screenshots/corgicards.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Screenshot of the Corgi Cards store we built" /></div>
+          <div class="work-copy"><div><span class="work-type">E-commerce · Lithuania</span><h3>Corgi Cards</h3><p class="work-offline">Site link temporarily unavailable.</p></div></div>
+        </article>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 02 · PRICING -->
 <section id="pricing">
   <div class="container">
-    <div class="marker"><span class="num">01</span><span>Pricing</span><span class="flex"></span><span>Fixed</span></div>
+    <div class="marker"><span class="num">02</span><span>Pricing</span><span class="flex"></span><span>Fixed</span></div>
     <div class="sec-head">
       <h2>Five services. <em>Fixed prices.</em></h2>
       <p class="intro">Every track — a fixed price, a clear timeline and a concrete result.</p>
@@ -686,7 +791,7 @@
 <!-- 02 · REVIEWS -->
 <section id="reviews">
   <div class="container">
-    <div class="marker"><span class="num">02</span><span>Reviews</span><span class="flex"></span><span>Real</span></div>
+    <div class="marker"><span class="num">03</span><span>Reviews</span><span class="flex"></span><span>Real</span></div>
     <div class="sec-head">
       <h2>Client <em>words.</em></h2>
       <p class="intro">Real people. Real projects. Real reviews.</p>
@@ -737,7 +842,7 @@
 <!-- 03 · CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="marker"><span class="num">03</span><span>Contact</span><span class="flex"></span><span>We reply within 24h</span></div>
+    <div class="marker"><span class="num">04</span><span>Contact</span><span class="flex"></span><span>We reply within 24h</span></div>
     <div class="sec-head">
       <h2>Get a <em>quote.</em></h2>
       <p class="intro">A few lines about your project → a reply within 24h with ideas and a price range</p>
@@ -849,6 +954,7 @@
       <div class="footer-col">
         <div class="label">Navigation</div>
         <a href="#content">Home →</a>
+        <a href="#work">Work</a>
         <a href="#pricing">Pricing</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
@@ -881,16 +987,17 @@
   // PROJECTS — vienintelis saltinis. type:"image" dabar; "video" veliau BE refaktoro.
   // url'ai is BRIEF.md §6.2 (realūs projektų puslapiai).
   const PROJECTS = [
-    { name: 'Artma',         type: 'image', src: { webp: 'screenshots/artma.webp',        jpg: 'screenshots/artma.jpg'        }, url: 'https://artmaverktakar.is' },
-    { name: 'Sunbroke',      type: 'image', src: { webp: 'screenshots/sunbroke.webp',     jpg: 'screenshots/sunbroke.jpg'     }, url: 'https://sunbroke.com' },
-    { name: 'Corgi Cards',   type: 'image', src: { webp: 'screenshots/corgicards.webp',   jpg: 'screenshots/corgicards.jpg'   }, url: 'https://corgicards.lt' },
-    { name: 'Closterra',     type: 'image', src: { webp: 'screenshots/closterra.webp',    jpg: 'screenshots/closterra.jpg'    }, url: 'https://closterra.com' },
-    { name: 'Tarita',        type: 'image', src: { webp: 'screenshots/tarita.webp',       jpg: 'screenshots/tarita.jpg'       }, url: 'https://tarita.lt' },
-    { name: 'Laimes Laikas', type: 'image', src: { webp: 'screenshots/laimeslaikas.webp', jpg: 'screenshots/laimeslaikas.jpg' }, url: 'https://laimeslaikas.lt' },
-    { name: 'Prellen',       type: 'image', src: { webp: 'screenshots/prellen.webp',      jpg: 'screenshots/prellen.jpg'      }, url: 'https://prellen.com' },
-    { name: 'Lingerie Shop', type: 'image', src: { webp: 'screenshots/lingerieshop.webp', jpg: 'screenshots/lingerieshop.jpg' }, url: 'https://lingerieshop.lt' },
-    { name: 'Montana Auto',  type: 'image', src: { webp: 'screenshots/montana.webp',      jpg: 'screenshots/montana.jpg'      }, url: 'https://montana33.lt' },
-    { name: 'Eurika',        type: 'image', src: { webp: 'screenshots/eurika.webp',       jpg: 'screenshots/eurika.jpg'       }, url: 'https://eurika.pl' },
+    { name: 'Sunbroke',         type: 'image', src: { webp: 'screenshots/sunbroke.webp',     jpg: 'screenshots/sunbroke.jpg'     }, url: 'https://sunbroke.com' },
+    { name: 'Closterra',        type: 'image', src: { webp: 'screenshots/closterra.webp',    jpg: 'screenshots/closterra.jpg'    }, url: 'https://closterra.com' },
+    { name: 'Tarita',           type: 'image', src: { webp: 'screenshots/tarita.webp',       jpg: 'screenshots/tarita.jpg'       }, url: 'https://tarita.lt' },
+    { name: 'Laimes Laikas',    type: 'image', src: { webp: 'screenshots/laimeslaikas.webp', jpg: 'screenshots/laimeslaikas.jpg' }, url: 'https://laimeslaikas.lt' },
+    { name: 'Lingerie Shop',    type: 'image', src: { webp: 'screenshots/lingerieshop.webp', jpg: 'screenshots/lingerieshop.jpg' }, url: 'https://lingerieshop.lt' },
+    { name: 'Montana Auto',     type: 'image', src: { webp: 'screenshots/montana.webp',      jpg: 'screenshots/montana.jpg'      }, url: 'https://montana33.lt' },
+    { name: 'Harmos Cosmetics', type: 'image', src: { webp: 'screenshots/harmos.webp',       jpg: 'screenshots/harmos.jpg'       }, url: 'https://harmoscosmetics.com' },
+    { name: 'Eurika Poland',    type: 'image', src: { webp: 'screenshots/eurika-pl.webp',    jpg: 'screenshots/eurika-pl.jpg'    }, url: 'https://www.eurika.pl/' },
+    { name: 'Eurika Latvia',    type: 'image', src: { webp: 'screenshots/eurika-lv.webp',    jpg: 'screenshots/eurika-lv.jpg'    }, url: 'https://www.eurikagalerija.lv/' },
+    { name: 'Eurika Estonia',   type: 'image', src: { webp: 'screenshots/eurika-ee.webp',    jpg: 'screenshots/eurika-ee.jpg'    }, url: 'https://www.eurikakunst.ee/' },
+    { name: 'Wish & Buy',       type: 'image', src: { webp: 'screenshots/wishandbuy.webp',   jpg: 'screenshots/wishandbuy.jpg'   }, url: 'https://wishandbuy.com/' },
   ];
 
   const TILE_COUNT  = isMobile ? 70 : 80;
@@ -1341,7 +1448,7 @@
     if (step) el.style.setProperty('--rd', Math.min(i, 6) * step + 'ms');
     els.push(el);
   });
-  add('.sec-head'); add('.price-card', 70); add('.t-card', 70); add('.form-wrap'); add('.footer-wordmark');
+  add('.sec-head'); add('.work-card', 70); add('.price-card', 70); add('.t-card', 70); add('.form-wrap'); add('.footer-wordmark');
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
